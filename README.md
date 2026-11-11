@@ -1,11 +1,9 @@
 # AI PROMPTS AND DEVELOPMENT DOCUMENTATION
 
 ## Project Information
-- **Project Name:** [Enter Project Name]
+- **Project Name:** [BalanceVault]
 - **Development Type:** Full Stack Web Application
 - **Frontend:** React / JavaScript
-- **Backend:** [Enter Backend Technology]
-- **Database:** [Enter Database]
 - **AI Tools Used:** ChatGPT
 
 ---
