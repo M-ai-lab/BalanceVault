@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  name         String
+  passwordHash String
+  role         String     @default("HOLDER")
+  active       Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  accounts     Account[]
+  audits       AuditLog[]
+}
+
+model Account {
+  id        String   @id @default(uuid())
+  number    String   @unique
+  type      String
+  status    String   @default("PENDING")
+  balance   Float    @default(0)
+  ownerId   String
+  owner     User     @relation(fields: [ownerId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  actorId   String?
+  actor     User?    @relation(fields: [actorId], references: [id])
+  action    String
+  target    String?
+  meta      String?
+  createdAt DateTime @default(now())
+}
